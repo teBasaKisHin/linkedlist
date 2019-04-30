@@ -2,7 +2,8 @@
 #include "stdio.h"
 
 linkedList initList(linkedList list) {
-
+    list->preCell = list->nextCell = NULL;
+    size = 0;
 }
 
 linkedList insertList(linkedList list, int data, int pos) {
@@ -50,5 +51,5 @@ linkedList printList(linkedList list) {
 }
 
 linkedList clearList(linkedList list) {
-    
+
 }
