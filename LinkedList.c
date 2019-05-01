@@ -1,13 +1,16 @@
 #include "LinkedList.h"
 #include "stdio.h"
+#include "stdlib.h"
 
-linkedList initList(linkedList list) {
-    list->preCell = list->nextCell = NULL;
-    size = 0;
+linkedList initList(linkedList *list) {
+    list->topCell = NULL;
+    list->endCell = NULL;
+    list->size = 0;
 }
 
-linkedList insertList(linkedList list, int data, int pos) {
-    cell *newCellNode = (cell *)malloc(sizeof(cell));
+linkedList insertList(linkedList *list, int data, int pos) {
+    cell *newCellNode;
+    newCellNode = (cell *)malloc(sizeof(cell));
     newCellNode->num = data;
     list->size++;
 
@@ -15,7 +18,8 @@ linkedList insertList(linkedList list, int data, int pos) {
     if (list->size == 0) {
         newCellNode->nextCell = newCellNode->preCell = NULL;
 
-        list->topCell = list->endCell = *newCellNode; 
+        list->topCell = &newCellNode;
+        list->endCell = &newCellNode;
     } else if(list->size <= pos) { // 指定範囲がsizeより大きいときは最後に挿入
         newCellNode->nextCell = NULL;
         newCellNode->preCell  = list->endCell;

@@ -4,5 +4,5 @@
 int main() {
     linkedList list;
 
-    list = initList();
+    initList(&list);
 }

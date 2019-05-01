@@ -11,18 +11,15 @@ typedef struct linkedList {
     int *topCell;
     int *endCell;
     int size;
-
-    // 現在のセル
-    cell *cellNode;
 } linkedList;
 
-linkedList initList(linkedList);
+linkedList initList(linkedList *list);
 
-linkedList insertList(linkedList, int, int);
+linkedList insertList(linkedList *list, int, int);
 
-linkedList printList(linkedList);
+linkedList printList(linkedList *list);
 
-linkedList clearList(linkedList);
+linkedList clearList(linkedList *list);
 
 // cell initCell(cell, int);
 
