@@ -36,12 +36,8 @@ linkedList insertList(linkedList *list, int data, int pos) {
             node = node->nextCell;
         }
 
-        cell nextNode, preNode;
-        nextNode = node;
-        preNode = node->preCell;
-
-        node->nextCell = newCellNode;
-        node->preCell = newCellNode;
+        node = &newCellNode;
+        node->preCell = &newCellNode;
     }
 }
 
