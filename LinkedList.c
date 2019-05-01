@@ -24,14 +24,14 @@ linkedList insertList(linkedList *list, int data, int pos) {
         newCellNode->nextCell = NULL;
         newCellNode->preCell  = list->endCell;
 
-        list->endCell = *newCellNode;
+        list->endCell = &newCellNode;
     } else if(0 > pos) { // 指定範囲が0より小さいとき先頭に代入
         newCellNode->nextCell = list->topCell;
         newCellNode->preCell  = NULL;
 
-        list->topCell = *newCellNode;
+        list->topCell = &newCellNode;
     } else {
-        cell node = topCell;
+        cell *node = list->topCell;
         for(int i = 1; i < pos; i++) {
             node = node->nextCell;
         }
@@ -40,20 +40,20 @@ linkedList insertList(linkedList *list, int data, int pos) {
         nextNode = node;
         preNode = node->preCell;
 
-        preNode->nextCell = newCellNode;
-        nextNode->preCell = newCellNode;
+        node->nextCell = newCellNode;
+        node->preCell = newCellNode;
     }
 }
 
-linkedList printList(linkedList list) {
-    cell *node;
-    node = list->topCell;
-    while(node->nextCell == NULL) {
-        printf("%d ", node->num);
-    }
-    putchar('\n');
-}
+// linkedList printList(linkedList list) {
+//     cell *node;
+//     node = list->topCell;
+//     while(node->nextCell == NULL) {
+//         printf("%d ", node->num);
+//     }
+//     putchar('\n');
+// }
 
-linkedList clearList(linkedList list) {
+// linkedList clearList(linkedList list) {
 
-}
+// }
