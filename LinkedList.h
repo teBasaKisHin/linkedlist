@@ -15,6 +15,7 @@ typedef struct linkedList {
 
 linkedList initList(linkedList *list);
 
+// posの指定範囲は0から始める
 linkedList insertList(linkedList *list, int, int);
 
 linkedList printList(linkedList *list);

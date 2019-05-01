@@ -30,7 +30,7 @@ linkedList insertList(linkedList *list, int data, int pos) {
         newCellNode->preCell  = NULL;
 
         list->topCell = &newCellNode;
-    } else {
+    } else { // 指定位置が1以上sizeより小さいとき
         cell *node = list->topCell;
         for(int i = 1; i < pos; i++) {
             node = node->nextCell;
@@ -41,15 +41,24 @@ linkedList insertList(linkedList *list, int data, int pos) {
     }
 }
 
-// linkedList printList(linkedList list) {
-//     cell *node;
-//     node = list->topCell;
-//     while(node->nextCell == NULL) {
-//         printf("%d ", node->num);
-//     }
-//     putchar('\n');
-// }
+linkedList printList(linkedList *list) {
+    cell *node;
+    node = list->topCell;
+    printf("LinkedList size is &d\n", list->size);
+    while(node->nextCell != NULL) {
+        printf("%d ", node->num);
+        node = node->nextCell;
+    }
+    putchar('\n');
+}
 
-// linkedList clearList(linkedList list) {
-
-// }
+linkedList clearList(linkedList *list) {
+    cell *nextNode, *node;
+    node = list->topCell;
+    while(node->nextCell != NULL) {
+        nextNode = node->nextCell;
+        free(node);
+        node = nextNode;
+    }
+    free(node);
+}
