@@ -11,7 +11,7 @@ int main() {
     // insertList(&list, 2, 1);
     // insertList(&list, 3, 2);
 
-    // printList(&list);
+    printList(&list);
 
     // clearList(&list);
 }

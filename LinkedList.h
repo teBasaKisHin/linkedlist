@@ -3,13 +3,13 @@
 
 typedef struct cell {
     int num;
-    int *nextCell;
-    int *preCell;
+    int nextCell;
+    int preCell;
 } cell;
 
 typedef struct linkedList {
-    int *topCell;
-    int *endCell;
+    cell *topCell;
+    cell *endCell;
     int size;
 } linkedList;
 

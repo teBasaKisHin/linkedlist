@@ -13,16 +13,21 @@ linkedList initList(linkedList *list) {
 //     newCell->num = data;
 // }
 
-// linkedList printList(linkedList *list) {
-//     cell *node;
-//     node = list->topCell;
-//     printf("LinkedList size is &d\n", list->size);
-//     while(node->nextCell != NULL) {
-//         printf("%d ", node->num);
-//         node = node->nextCell;
-//     }
-//     putchar('\n');
-// }
+linkedList printList(linkedList *list) {
+    printf("LinkedList size is %d\n", list->size);
+    if(list->size == 0) {
+        printf("Linked List is NULL\n");
+        return;
+    }
+    
+    cell *node;
+    node = &list->topCell;
+    while(node->nextCell != NULL) {
+        printf("%d ", node->num);
+        node = &node->nextCell;
+    }
+    putchar('\n');
+}
 
 // linkedList insertList(linkedList *list, int data, int pos) {
 //     cell *newCellNode;
