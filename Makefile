@@ -1,5 +1,5 @@
-main: main.o LinkedList.o LinkedList.h
-	gcc -o main main.o LinkedList.o
+main.out: main.o LinkedList.o LinkedList.h
+	gcc -o main.out main.o LinkedList.o
 
 LinkedList: LinkedList.o LinkedList.j
 	gcc -o LinkedList LinkedList.o

@@ -2,4 +2,4 @@
 *.exe
 *.o
 .log
-main
+main.out

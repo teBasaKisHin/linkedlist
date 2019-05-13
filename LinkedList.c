@@ -2,21 +2,35 @@
 #include "stdio.h"
 #include "stdlib.h"
 
-cell initCell(cell *newCell, int data) {
+cell *initCell(int data) {
+    cell *newCell = NULL;
     newCell = (cell *)malloc(sizeof(cell));
+
+    if(newCell == NULL) {
+        printf("メモリの取得エラー\n");
+        return NULL;
+    }
     newCell->num = data;
+    newCell->nextCell = NULL;
+    newCell->preCell = NULL;
+
+    return newCell;
 }
 
-linkedList initList(linkedList *list) {
+linkedList *initList() {
+    linkedList *list;
+    list = (linkedList *)malloc(sizeof(linkedList));
+
+    if(list == NULL) {
+        printf("メモリの取得エラー\n");
+        return NULL;
+    }
+
     list->topCell = NULL;
     // list->endCell = NULL;
     list->size = 0;
 
-    // テスト
-    cell newCell;
-    initCell(&newCell, 0);
-    newCell->preCell = NULL;
-    newCell->nextCell = NULL;
+    return list;
 }
 
 linkedList freeList(linkedList *list) {

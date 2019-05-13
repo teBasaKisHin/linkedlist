@@ -2,9 +2,9 @@
 #include "stdio.h"
 
 int main() {
-    linkedList list;
+    linkedList *list;
 
-    initList(&list);
+    list = initList();
     printf("Linked List was Created\n");
 
     // insertList(&list, 1, 0);
@@ -13,5 +13,5 @@ int main() {
 
     printList(&list);
 
-    // clearList(&list);
+    freeList(&list);
 }
