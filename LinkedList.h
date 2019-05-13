@@ -3,24 +3,24 @@
 
 typedef struct cell {
     int num;
-    int nextCell;
-    int preCell;
+    struct cell *nextCell;
+    struct cell *preCell;
 } cell;
 
 typedef struct linkedList {
-    cell *topCell;
-    cell *endCell;
     int size;
+    struct cell *topCell;
+    struct cell *endCell;
 } linkedList;
 
 linkedList initList(linkedList *list);
+
+linkedList freeList(linkedList *list);
 
 // posの指定範囲は0から始める
 linkedList insertList(linkedList *list, int, int);
 
 linkedList printList(linkedList *list);
-
-linkedList clearList(linkedList *list);
 
 // リストの先頭に挿入
 linkedList pushFront(linkedList *list, cell *newCell, int);
@@ -32,5 +32,7 @@ linkedList pushBack(linkedList *list, cell *newCell, int);
 linkedList push(linkedList *list, cell *newCell, int, int);
 
 cell initCell(cell *newCell, int);
+
+cell freeCell(cell *cell);
 
 #endif // ___LinkedList

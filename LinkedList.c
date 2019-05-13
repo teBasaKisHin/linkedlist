@@ -2,16 +2,39 @@
 #include "stdio.h"
 #include "stdlib.h"
 
-linkedList initList(linkedList *list) {
-    list->topCell = NULL;
-    list->endCell = NULL;
-    list->size = 0;
+cell initCell(cell *newCell, int data) {
+    newCell = (cell *)malloc(sizeof(cell));
+    newCell->num = data;
 }
 
-// cell initCell(cell *newCell, int data) {
-//     newCell = (cell *)malloc(sizeof(cell));
-//     newCell->num = data;
-// }
+linkedList initList(linkedList *list) {
+    list->topCell = NULL;
+    // list->endCell = NULL;
+    list->size = 0;
+
+    // テスト
+    cell newCell;
+    initCell(&newCell, 0);
+    newCell->preCell = NULL;
+    newCell->nextCell = NULL;
+}
+
+linkedList freeList(linkedList *list) {
+    cell *Cell;
+    cell *next;
+
+    Cell = list->topCell;
+    next = Cell->nextCell;
+    while(next->nextCell != NULL) {
+        freeCell(Cell);
+        Cell = next;
+        next = Cell->nextCell;
+    }
+}
+
+cell freeCell(cell *cell) {
+    free(cell);
+}
 
 linkedList printList(linkedList *list) {
     printf("LinkedList size is %d\n", list->size);
@@ -20,11 +43,11 @@ linkedList printList(linkedList *list) {
         return;
     }
     
-    cell *node;
-    node = &list->topCell;
-    while(node->nextCell != NULL) {
-        printf("%d ", node->num);
-        node = &node->nextCell;
+    cell *Cell;
+    Cell = list->topCell;
+    while(Cell->nextCell != NULL) {
+        printf("%d ", Cell->num);
+        Cell = Cell->nextCell;
     }
     putchar('\n');
 }
@@ -51,18 +74,6 @@ linkedList printList(linkedList *list) {
 //         node = &newCellNode;
 //         node->preCell = &newCellNode;
 //     } */
-// }
-
-
-// linkedList clearList(linkedList *list) {
-//     cell *nextNode, *node;
-//     node = list->topCell;
-//     while(node->nextCell != NULL) {
-//         nextNode = node->nextCell;
-//         free(node);
-//         node = nextNode;
-//     }
-//     free(node);
 // }
 
 // linkedList pushFront(linkedList *list, cell *newCell, int data) {
