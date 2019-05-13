@@ -5,12 +5,13 @@ int main() {
     linkedList list;
 
     initList(&list);
+    printf("Linked List was Created\n");
 
-    insertList(&list, 1, 0);
-    insertList(&list, 2, 1);
-    insertList(&list, 3, 2);
+    // insertList(&list, 1, 0);
+    // insertList(&list, 2, 1);
+    // insertList(&list, 3, 2);
 
-    printList(&list);
+    // printList(&list);
 
-    clearList(&list);
+    // clearList(&list);
 }
