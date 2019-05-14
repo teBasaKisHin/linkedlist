@@ -9,9 +9,8 @@ int main() {
     pushFront(list, 0);
     pushFront(list, 1);
     pushBack(list, 2);
-    // insertList(&list, 1, 0);
-    // insertList(&list, 2, 1);
-    // insertList(&list, 3, 2);
+    insertList(list, -1, -1);
+    insertList(list, 10, 2);
 
     printList(list);
 

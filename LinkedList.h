@@ -17,7 +17,7 @@ linkedList *initList();
 void freeList(linkedList *list);
 
 // posの指定範囲は0から始める
-linkedList insertList(linkedList *list, int, int);
+void insertList(linkedList *list, int, int);
 
 void printList(linkedList *list);
 
@@ -27,7 +27,7 @@ void pushFront(linkedList *list, int);
 // リストの終端に挿入
 void pushBack(linkedList *list, int);
 
-// リストの途中に挿入
+// リストの途中に挿入 1から始める
 linkedList push(linkedList *list, cell *newCell, int, int);
 
 cell *initCell();

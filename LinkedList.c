@@ -137,31 +137,34 @@ void pushBack(linkedList *list,int data) {
     printf("末尾のセルの追加に成功 %d\n", newCell->num);
 }
 
-// linkedList insertList(linkedList *list, int data, int pos) {
-//     cell *newCellNode;
+void insertList(linkedList *list, int data, int pos) {
+    if(list == NULL) {
+        printf("リストが定義されていません\n");
+        return;
+    }
 
-//     initCell(&newCellNode, data);
-//     list->size++;
+    if(list->size <= pos) { // 指定範囲がsizeより大きいときは最後に挿入
+        pushBack(list, data);
+    } else if(0 >= pos) { // 指定範囲が0より小さいとき先頭に代入
+        pushFront(list, data);
+    } else { // 指定位置が1以上sizeより小さいとき
+        cell *newCell = initCell(data);
+        if(newCell == NULL) {
+            printf("リストの追加に失敗\n");
+            return;
+        }
+        cell *preCell = list->topCell;
+        for(int i = 1; i < pos - 1; i++) {
+            preCell = preCell->nextCell;
+        }
+        cell *nextCell = preCell->nextCell;
 
-//     // リストが初期状態のときは先頭に代入
-//     if (list->size == 0) {
-//         pushFront(list, newCellNode, data);
-//     } else if(list->size <= pos) { // 指定範囲がsizeより大きいときは最後に挿入
-//         pushBack(list, newCellNode, data);
-//     } else if(0 > pos) { // 指定範囲が0より小さいとき先頭に代入
-//         pushFront(list, newCellNode, data);
-//     } /* else { // 指定位置が1以上sizeより小さいとき
-//         cell *node = list->topCell;
-//         for(int i = 1; i < pos; i++) {
-//             node = node->nextCell;
-//         }
+        preCell->nextCell = newCell;
+        newCell->preCell = preCell;
+        newCell->nextCell = nextCell;
+        nextCell->preCell = newCell;
 
-//         node = &newCellNode;
-//         node->preCell = &newCellNode;
-//     } */
-// }
-
-
-// linkedList push(linkedList *list, cell *newCell, int data, int pos) {
-
-// }
+        newCell->num = data;
+        printf("%dのセルの追加に成功 %d\n", pos, newCell->num);
+    }
+}
