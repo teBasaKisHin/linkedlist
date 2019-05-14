@@ -13,7 +13,6 @@ linkedList *initList() {
     }
 
     list->topCell = NULL;
-    // list->endCell = NULL;
     list->size = 0;
 
     printf("Linked List was Created.\n");
@@ -42,7 +41,7 @@ void freeList(linkedList *list) {
 
 void freeCell(cell *cell) {
     free(cell);
-    printf("セルの開放が完了\n");
+    // printf("セルの開放が完了\n");
 }
 
 void printList(linkedList *list) {
@@ -102,6 +101,40 @@ void pushFront(linkedList *list, int data) {
     newCell->num = data;
     list->size++;
     list->topCell = newCell;
+    printf("先頭のセルの追加に成功 %d\n", newCell->num);
+}
+
+void pushBack(linkedList *list,int data) {
+    if(list == NULL) {
+        printf("リストが定義されていません\n");
+        return;
+    }
+    cell *newCell = initCell(data);
+    if(newCell == NULL) {
+        printf("リストの追加に失敗\n");
+        return;
+    }
+
+    newCell->nextCell = NULL;
+    if(list->size == 0)
+    {
+        newCell->preCell = NULL;
+        list->topCell = newCell;
+    }
+    else if(list->size > 0)
+    {
+        // 最後のセルを探索
+        cell *endCell = list->topCell;
+        while(endCell->nextCell != NULL) {
+            endCell = endCell->nextCell;
+        }
+        newCell->preCell = endCell;
+        endCell->nextCell = newCell;
+    }
+
+    newCell->num = data;
+    list->size++;
+    printf("末尾のセルの追加に成功 %d\n", newCell->num);
 }
 
 // linkedList insertList(linkedList *list, int data, int pos) {
@@ -128,11 +161,6 @@ void pushFront(linkedList *list, int data) {
 //     } */
 // }
 
-// linkedList pushBack(linkedList *list, cell *newCell,int data) {
-//     newCell->nextCell = NULL;
-//     newCell->preCell  = list->endCell;
-//     list->endCell = &newCell;
-// }
 
 // linkedList push(linkedList *list, cell *newCell, int data, int pos) {
 

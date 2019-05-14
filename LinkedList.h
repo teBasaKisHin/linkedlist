@@ -10,7 +10,6 @@ typedef struct cell {
 typedef struct linkedList {
     int size;
     struct cell *topCell;
-    // struct cell *endCell;
 } linkedList;
 
 linkedList *initList();
@@ -26,7 +25,7 @@ void printList(linkedList *list);
 void pushFront(linkedList *list, int);
 
 // リストの終端に挿入
-linkedList pushBack(linkedList *list, cell *newCell, int);
+void pushBack(linkedList *list, int);
 
 // リストの途中に挿入
 linkedList push(linkedList *list, cell *newCell, int, int);
