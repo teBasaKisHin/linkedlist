@@ -2,20 +2,20 @@
 #include "stdio.h"
 #include "stdlib.h"
 
-cell *initCell(int data) {
-    cell *newCell = NULL;
-    newCell = (cell *)malloc(sizeof(cell));
+// cell *initCell(int data) {
+//     cell *newCell = NULL;
+//     newCell = (cell *)malloc(sizeof(cell));
 
-    if(newCell == NULL) {
-        printf("メモリの取得に失敗\n");
-        return NULL;
-    }
-    newCell->num = data;
-    newCell->nextCell = NULL;
-    newCell->preCell = NULL;
+//     if(newCell == NULL) {
+//         printf("メモリの取得に失敗\n");
+//         return NULL;
+//     }
+//     newCell->num = data;
+//     newCell->nextCell = NULL;
+//     newCell->preCell = NULL;
 
-    return newCell;
-}
+//     return newCell;
+// }
 
 linkedList *initList() {
     linkedList *list;
@@ -45,13 +45,13 @@ void freeList(linkedList *list) {
     }
 
     Cell = list->topCell;
-    preCell = Cell->nextCell;
     while(Cell != NULL) {
-        freeCell(Cell);
-        Cell = preCell;
-        preCell = Cell->nextCell;
+        preCell = Cell;
+        Cell = preCell->nextCell;
+        freeCell(preCell);
     }
     
+    printf("リストの開放の完了\n");
     free(list);
 }
 
