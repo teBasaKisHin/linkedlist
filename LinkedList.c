@@ -85,10 +85,21 @@ void pushFront(linkedList *list, int data) {
         printf("リストの追加に失敗\n");
         return;
     }
-    newCell->nextCell = list->topCell;
-    newCell->preCell = NULL;
-    newCell->num = data;
 
+    if(list->size == 0)
+    {
+        newCell->nextCell = NULL;
+        newCell->preCell = NULL;
+    }
+    else if(list->size > 0)
+    {
+        cell *nextCell = list->topCell;
+        newCell->nextCell = nextCell;
+        newCell->preCell = NULL;
+        nextCell->preCell = newCell;
+    }
+
+    newCell->num = data;
     list->size++;
     list->topCell = newCell;
 }
