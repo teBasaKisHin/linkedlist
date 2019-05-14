@@ -7,7 +7,7 @@ cell *initCell(int data) {
     newCell = (cell *)malloc(sizeof(cell));
 
     if(newCell == NULL) {
-        printf("メモリの取得エラー\n");
+        printf("メモリの取得に失敗\n");
         return NULL;
     }
     newCell->num = data;
@@ -19,6 +19,7 @@ cell *initCell(int data) {
 
 linkedList *initList() {
     linkedList *list;
+
     list = (linkedList *)malloc(sizeof(linkedList));
 
     if(list == NULL) {
@@ -30,35 +31,47 @@ linkedList *initList() {
     // list->endCell = NULL;
     list->size = 0;
 
+    printf("Linked List was Created.\n");
     return list;
 }
 
-linkedList freeList(linkedList *list) {
-    cell *Cell;
-    cell *next;
+void freeList(linkedList *list) {
+    cell *Cell = NULL;
+    cell *preCell = NULL;
+
+    if(list == NULL) {
+        printf("リストがNULLです\n");
+        return;
+    }
 
     Cell = list->topCell;
-    next = Cell->nextCell;
-    while(next->nextCell != NULL) {
+    preCell = Cell->nextCell;
+    while(Cell != NULL) {
         freeCell(Cell);
-        Cell = next;
-        next = Cell->nextCell;
+        Cell = preCell;
+        preCell = Cell->nextCell;
     }
+    
+    free(list);
 }
 
-cell freeCell(cell *cell) {
+void freeCell(cell *cell) {
     free(cell);
+    printf("セルの開放が完了\n");
 }
 
-linkedList printList(linkedList *list) {
-    printf("LinkedList size is %d\n", list->size);
+void printList(linkedList *list) {
+    if(list == NULL) {
+        printf("リストが定義されていません");
+        return;
+    }
     if(list->size == 0) {
-        printf("Linked List is NULL\n");
+        printf("リストは空です\n");
         return;
     }
     
-    cell *Cell;
-    Cell = list->topCell;
+    printf("LinkedList size is %d\n", list->size);
+    cell *Cell = list->topCell;
     while(Cell->nextCell != NULL) {
         printf("%d ", Cell->num);
         Cell = Cell->nextCell;

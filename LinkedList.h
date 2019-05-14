@@ -15,12 +15,12 @@ typedef struct linkedList {
 
 linkedList *initList();
 
-linkedList freeList(linkedList *list);
+void freeList(linkedList *list);
 
 // posの指定範囲は0から始める
 linkedList insertList(linkedList *list, int, int);
 
-linkedList printList(linkedList *list);
+void printList(linkedList *list);
 
 // リストの先頭に挿入
 linkedList pushFront(linkedList *list, cell *newCell, int);
@@ -33,6 +33,6 @@ linkedList push(linkedList *list, cell *newCell, int, int);
 
 cell *initCell(int);
 
-cell freeCell(cell *cell);
+void freeCell(cell *cell);
 
 #endif // ___LinkedList
