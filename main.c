@@ -6,6 +6,7 @@ int main() {
 
     list = initList();
 
+    pushFront(list, 0);
     // insertList(&list, 1, 0);
     // insertList(&list, 2, 1);
     // insertList(&list, 3, 2);

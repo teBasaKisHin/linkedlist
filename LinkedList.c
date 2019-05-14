@@ -2,21 +2,6 @@
 #include "stdio.h"
 #include "stdlib.h"
 
-// cell *initCell(int data) {
-//     cell *newCell = NULL;
-//     newCell = (cell *)malloc(sizeof(cell));
-
-//     if(newCell == NULL) {
-//         printf("メモリの取得に失敗\n");
-//         return NULL;
-//     }
-//     newCell->num = data;
-//     newCell->nextCell = NULL;
-//     newCell->preCell = NULL;
-
-//     return newCell;
-// }
-
 linkedList *initList() {
     linkedList *list;
 
@@ -72,11 +57,40 @@ void printList(linkedList *list) {
     
     printf("LinkedList size is %d\n", list->size);
     cell *Cell = list->topCell;
-    while(Cell->nextCell != NULL) {
+    while(Cell != NULL) {
         printf("%d ", Cell->num);
         Cell = Cell->nextCell;
     }
     putchar('\n');
+}
+
+cell *initCell() {
+    cell *newCell = NULL;
+    newCell = (cell *)malloc(sizeof(cell));
+
+    if(newCell == NULL) {
+        printf("メモリの取得に失敗\n");
+        return NULL;
+    }
+    return newCell;
+}
+
+void pushFront(linkedList *list, int data) {
+    if(list == NULL) {
+        printf("リストが定義されていません\n");
+        return;
+    }
+    cell *newCell = initCell(data);
+    if(newCell == NULL) {
+        printf("リストの追加に失敗\n");
+        return;
+    }
+    newCell->nextCell = list->topCell;
+    newCell->preCell = NULL;
+    newCell->num = data;
+
+    list->size++;
+    list->topCell = newCell;
 }
 
 // linkedList insertList(linkedList *list, int data, int pos) {
@@ -101,12 +115,6 @@ void printList(linkedList *list) {
 //         node = &newCellNode;
 //         node->preCell = &newCellNode;
 //     } */
-// }
-
-// linkedList pushFront(linkedList *list, cell *newCell, int data) {
-//     newCell->nextCell = list->topCell;
-//     newCell->preCell  = NULL;
-//     list->topCell = &newCell;
 // }
 
 // linkedList pushBack(linkedList *list, cell *newCell,int data) {

@@ -23,7 +23,7 @@ linkedList insertList(linkedList *list, int, int);
 void printList(linkedList *list);
 
 // リストの先頭に挿入
-linkedList pushFront(linkedList *list, cell *newCell, int);
+void pushFront(linkedList *list, int);
 
 // リストの終端に挿入
 linkedList pushBack(linkedList *list, cell *newCell, int);
@@ -31,7 +31,7 @@ linkedList pushBack(linkedList *list, cell *newCell, int);
 // リストの途中に挿入
 linkedList push(linkedList *list, cell *newCell, int, int);
 
-cell *initCell(int);
+cell *initCell();
 
 void freeCell(cell *cell);
 
